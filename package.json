@@ -2,7 +2,7 @@
   "name"        : "promise",
   "description" : "Flexible, composable, monadic futures for javascript",
   "keywords"    : ["ender", "async", "promise", "future", "promises", "futures"],
-  "version"     : "0.0.1",
+  "version"     : "0.0.2",
   "homepage"    : "http://github.com/freels/promise.js",
   "author"      : "Matt Freels (http://matt.freels.name)",
 
