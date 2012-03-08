@@ -1,0 +1,31 @@
+{
+  "JAVASCRIPT" : {
+    "DIST_DIR" : "./",
+
+    "promise" : [
+      "src/copyright.js",
+      "src/promise.js"
+    ]
+  },
+
+  "JSHINT_OPTS" : {
+    "bitwise"  : true,
+    "curly"    : false,
+    "forin"    : true,
+    "immed"    : false,
+    "latedef"  : true,
+    "newcap"   : true,
+    "noarg"    : true,
+    "undef"    : true,
+    "trailing" : true,
+    "asi"      : true,
+    "boss"     : true,
+    "evil"     : true,
+    "laxbreak" : true,
+    "laxcomma" : true,
+    "loopfunc" : true,
+    "multistr" : true,
+    "indent"   : 2,
+    "browser"  : true
+  }
+}

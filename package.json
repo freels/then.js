@@ -1,0 +1,23 @@
+{
+  "name"        : "promise",
+  "description" : "Composable futures for sane asynchronous programming.",
+  "keywords"    : ["ender", "async", "promise", "future", "promises", "futures"],
+  "version"     : "0.1",
+  "homepage"    : "http://github.com/freels/promise.js",
+  "author"      : "Matt Freels (http://matt.freels.name)",
+
+  "repository" : {
+    "type" : "git",
+    "url"  : "https://github.com/freels/promise.js.git"
+  },
+
+  "main"  : "./promise.js",
+  "ender" : ".src/ender.js",
+
+  "devDependencies" : {},
+
+  "scripts" : {
+    "build" : "smoosh make ./build.json",
+    "test"  : "node make/tests.js"
+  }
+}
