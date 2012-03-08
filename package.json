@@ -1,7 +1,7 @@
 {
   "name"        : "then",
-  "description" : "Flexible, composable, monadic futures for javascript",
-  "keywords"    : ["ender", "async", "promise", "future", "promises", "futures"],
+  "description" : "Flexible, composable, monadic futures / promises for javascript",
+  "keywords"    : ["ender", "async", "promise", "future"],
   "version"     : "0.0.1",
   "homepage"    : "http://github.com/freels/then.js",
   "author"      : "Matt Freels (http://matt.freels.name)",
