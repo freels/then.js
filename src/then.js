@@ -32,29 +32,13 @@
     p.callbacks = []
   }
 
-  function isFuture(v) {
-    !!v && v.isFuture
-  }
+  function isFuture(v) { !!v && v.isFuture }
 
   function flatUpdate(err, value, dest) {
     if (err || !isFuture(value)) {
       dest.update(err, value)
     } else {
       value.onUpdate(function(e, v) { flatUpdate(e, v, dest) })
-    }
-  }
-
-  function promise() {
-    if (arguments.length === 0) {
-      return new Promise()
-    } else {
-      var f    = arguments[0]
-        , args = Array.prototype.slice.call(arguments, 1)
-        , p    = new Promise()
-
-      f.apply(null, args.concat(p))
-
-      return p
     }
   }
 
@@ -77,7 +61,7 @@
 
   , updateIfEmpty: function(err, value) {
       if (!this.isDefined) {
-        this.error = err
+        this.error = err.message ? err : new Error(err)
         this.value = value
         this.isDefined = true
 
@@ -89,13 +73,9 @@
       }
     }
 
-  , setValue: function(v) {
-      this.update(null, v)
-    }
+  , setValue: function(v) { this.update(null, v) }
 
-  , setError: function(e) {
-      this.update(e, null)
-    }
+  , setError: function(e) { this.update(e, null) }
 
   // Registering callbacks
 
@@ -178,6 +158,81 @@
 
       return next
     }
+  }
+
+
+  // Module
+
+  function promise(f, thisp) {
+    return function() {
+      var p = new Promise()
+      f.apply(thisp, Array.prototype.concat.call(arguments, p))
+      return p
+    }
+  }
+
+  promise.result = function(err, value) {
+    var p = new Promise()
+    p.update(err, value)
+    return p
+  }
+
+  promise.value = function(value) { promise.result(null, value) }
+
+  promise.error = function(err) { promise.result(err, null) }
+
+  promise.done = promise.result(null, null)
+
+  function joinPromises(ps, i) {
+    if (ps.length === i) {
+      return promise.done
+    } else {
+      return ps[i].then(function(_) {
+        return joinPromises(ps, i + 1)
+      })
+    }
+  }
+
+  promise.join = function(ps) {
+    return joinPromises(ps, 0)
+  }
+
+  function sequencePromises(ps, rv, i) {
+    if (ps.length === i) {
+      return promise.value(rv)
+    } else {
+      return ps[i].then(function(value) {
+        rv[i] = value
+        return sequencePromises(ps, rv, i + 1)
+      })
+    }
+  }
+
+  promise.sequence = function(ps) {
+    return sequencePromises(ps, new Array(ps.length), 0)
+  }
+
+  promise.select = function(ps) {
+    var mutex = new Promise()
+      , p     = new Promise()
+      , rest  = ps.slice(0)
+
+    for (var iter = 0; iter < ps.length; iter++) {
+      var i = iter
+
+      ps[i].onUpdate(function(err, value) {
+        if (mutex.updateIfEmpty(null, true)) {
+          if (err) {
+            p.setError(err)
+          } else {
+            rest.splice(i, 1)
+            p.setValue([value, rest])
+          }
+        }
+      })
+    }
+
+    return p
   }
 
   return promise
