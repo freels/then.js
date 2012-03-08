@@ -2,9 +2,9 @@
   "JAVASCRIPT" : {
     "DIST_DIR" : "./",
 
-    "promise" : [
+    "then" : [
       "src/copyright.js",
-      "src/promise.js"
+      "src/then.js"
     ]
   },
 

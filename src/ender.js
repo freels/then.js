@@ -1,5 +1,5 @@
 !function($) {
-  var p = require('promise')
+  var p = require('then')
 
   $.ender({
     promise: p

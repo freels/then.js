@@ -1,6 +1,6 @@
 /*!
-  * Promise.js: Flexible, composable, monadic futures for javascript
+  * Then: Flexible, composable, monadic futures for javascript
   * (c) Matt Freels 2012
-  * https://github.com/freels/promise.js
+  * https://github.com/freels/then.js
   * license MIT
   */

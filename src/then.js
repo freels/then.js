@@ -4,7 +4,7 @@
   if (typeof define == 'function') define(definition)
   else if (typeof module != 'undefined') module.exports = definition()
   else this[name] = definition()
-}('promise', function() {
+}('then', function() {
 
   // Exeptions
 

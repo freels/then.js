@@ -1,18 +1,18 @@
 {
-  "name"        : "promise",
+  "name"        : "then",
   "description" : "Flexible, composable, monadic futures for javascript",
   "keywords"    : ["ender", "async", "promise", "future", "promises", "futures"],
-  "version"     : "0.0.2",
-  "homepage"    : "http://github.com/freels/promise.js",
+  "version"     : "0.0.1",
+  "homepage"    : "http://github.com/freels/then.js",
   "author"      : "Matt Freels (http://matt.freels.name)",
 
   "repository" : {
     "type" : "git",
-    "url"  : "https://github.com/freels/promise.js.git"
+    "url"  : "https://github.com/freels/then.js.git"
   },
 
-  "main"  : "./promise.js",
-  "ender" : ".src/ender.js",
+  "main"  : "./then.js",
+  "ender" : "./src/ender.js",
 
   "devDependencies" : {},
 
