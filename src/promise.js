@@ -6,8 +6,6 @@
   else this[name] = definition()
 }('promise', function() {
 
-  "use strict";
-
   // Exeptions
 
   function UpdateError() {
